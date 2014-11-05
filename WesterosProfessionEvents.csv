@@ -1,0 +1,7 @@
+Blacksmith,1,became a blacksmith.,nobility royalty apprentice,0.0 0.0 2,professional,1
+Farmer,1,became a farmer.,nobility royalty farmhand,0.0 0.0 2,farmer,1
+Fisherman,1,became a fisherman.,nobility royalty cabinboy,0.0 0.0 2,fisherman,1
+Knight,1,was eventually knighted.,commoner strong squire,0.3 2 5,knight,1
+Guardsman,1,became a guardsman serving my lord in his household watch.,nobility tall,0.0 2,guard,1
+Merchant,0.5,became a merchant,greedy organized cabinboy,5 2 2,merchant,1
+Lord,1,became a lord after my father passed away.,commoner intelligent planning,0.0 3 2,Lord,1

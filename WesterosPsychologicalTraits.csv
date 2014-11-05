@@ -1,0 +1,63 @@
+cruel,1,This person has a cruel bent,2
+kind,1,This individual seems kindly,1
+diligent,1,This person has a reputation for getting the job done,1
+distracted,1,This individual has trouble keeping focused,2
+ambitious,1,This person has a reputation for being ambitious,1
+lazy,1,This person seems half asleep,2
+active,1,This person seems very energetic,1
+drunkard,1,'This person is either drunk or hungover, the bottle in their hand would seem to indicate the first option.',2
+teetotal,1,This person has never had a drink in their life,1
+glutton,1,This person likes food,2
+hedonistic,1,Their promiscuous reputation precedes them,2
+chaste,1,This person is chaste,1
+religious,1,This person has religious iconography on their person,1
+sacrilegious,1,This person has a reputation for not being very spiritual,2
+cynical,1,This individual has a negative outlook on life,2
+optimistic,1,This person is very positive,1
+vindictive,1,This person harbors grudges,2
+forgiving,1,This person is very forgiving,1
+Planning,1,This individual is very methodical and always thinks ahead,1
+irrational,1,This person is irrational,2
+impulsive,1,This person is known to act out of impulse,2
+expensive,1,This person has rich taste,3
+cheap,1,This person is spendthrift,3
+charitable,1,This person likes to give away money,1
+greedy,1,This person likes money,2
+clean,1,This person is known for cleanliness,3
+dirty,1,This person looks very sloppy and smells,3
+organized,1,This person has a reputation for being very organized,1
+sloppy,1,This person has mismatched clothing and looks unorganized,2
+gregarious,1,This person has a friendly demeanor,1
+shy,1,This person is very reserved,2
+trusting,1,This person is known for being very trusting,1
+paranoid,1,This person is paranoid,2
+smart,1,This person is intelligent,3
+stupid,1,This person is not intelligent,3
+savant,1,This person is a savant,3
+psychotic,1,This person is psychotic,3
+protective,1,This person is protective,2
+depressed,1,This person is depressed,2
+trendy,1,This person is trendy,3
+creative,1,This person is creative,1
+traditional,1,This person is traditional,3
+energetic,1,This person is energetic,1
+retarded,1,This person is mentally impaired,3
+dyslexic,1,This person is dyslexic,3
+loud,1,This person is loud,3
+soft spoken,1,This person is soft spoken,2
+cosmopolitan,1,This person is cosmopolitan,3
+outdoorsy,1,This person is outdoorsy,3
+honorable,1,This person is honorable,1
+deceitful,1,This person is deceitful,2
+compromising,1,This person is compromising,2
+stubborn,1,This person is stubborn,3
+warm,1,This person is warm,1
+cold,1,This person is cold,2
+gay,1,This person is gay,3
+transgender,1,This person is transgender,3
+wise,1,This person is wise,3
+naive,1,This person is naïve,1
+punctual,1,This person is punctual,1
+late,1,This person is often late,2
+sickly,1,This person gets sick a lot,3
+healthy,1,This person is very healthy,3

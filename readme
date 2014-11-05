@@ -1,0 +1,10 @@
+Character Generator by Matthew Parker
+
+Dependencies:  nltk, numpy
+
+Both translator.py and person.py have mains and can be executed.  
+The translator generates inform7 type output and the person prints out a lot of the traits in a less usable fashion.
+
+The inform7 code expects that the program it's being inserted into has Conversation Framework by Eric Eve
+
+All of the data is currently stored in the csv files.

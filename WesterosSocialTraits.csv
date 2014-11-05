@@ -1,0 +1,5 @@
+nobility,0.1,This person is a nobleman,2
+commoner,0.889,This person is a commoner,2
+royalty,0.001,This person is royalty,2
+lord,0.01,This person is of high noble birth,2
+slave,0,This person is a slave,2
