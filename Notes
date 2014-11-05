@@ -1,0 +1,3 @@
+Traits seems to have no error check for paradoxes. "Person is short. Person is tall." can happen.
+
+Spelling and grammar errors in generated text e.g. " As an adult I had the misfortune to went to war."
