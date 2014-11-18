@@ -1,0 +1,174 @@
+"The Reach":
+"commoner"
+"Merchant"
+"My family, although of common birth, is exceedingly wealthy.  We make a living buying and selling goods in the ports of Oldtown and the Arbor in the Reach.  My father is one of the "
+"greatest wine merchants in all of Westeros.  We have a small manor in Oldtown where I grew up that always smelled of cheese and wine."
+
+"My family comes from the reach, it is a fertile land and we have been farming the same plot for generations.  We grow fruit"
+"in abundance we have served our lord's family for many generations.  We have a small home in the northern region along the Roseroad near Bitterbridge."
+"Life is pretty plain for us, nothing really out of the ordinary."
+
+"Knight"
+"My father was a wandering swordsman out of the Westerlands who saved our lord from the Reach while serving as a Man at Arms in the war of the Ninepenny kings.  He was knighted for "
+"his actions in the war and was granted a plot of land in the area around Old Oak.  I took up my father's arms when he grew too weary and I have been a Knight in the "
+"service ever since."
+
+"My family has a small holding in the south of the Reach.  We govern over about twenty families of commoners who work the land and half half a dozen sworn swords."
+"We have a small motte and bailey to protect the peasants in times of need and a small hall for gatherings.  Our family has been in the area for generations, tracing"
+" our lineage all the way back to the bastard son of one of the Kings named Garth, I forget which."   
+
+"The Vale":
+"commoner"
+"Merchant"
+"My family, although of common birth, is one of the richest in the Vale.  We make a living buying and selling goods in the ports of Gulltown, the Sisters, King's Landing, and even White Harbor."
+ "My family trades in every type of good imaginable but we make most of our money selling the fruits of the Vale to the lords of Kings Landing and the barren North."
+
+"My family hails from the Vale.  We have for generations lived and toiled in the soil at the foot of the great mountains in the vale of Arryn. "
+"We grow mostly grains to feed the soldiers that guard the vale and my father takes great pride in his work providing for the men at arms. "
+"We have a small house and several acres of land to call our own and it serves us well enough."
+
+"Knight"
+"My father was a sworn Knight as was his father before him as am I.  We have been in the service of our lord for generations, many of my ancestors have been "
+"knights of the Vail over the years. We have a small bit of land worked by a couple families "
+"that we watch over in return for our service."
+
+"My noble family is from the Vale of Aryn.  There we guard some of the coast along the fingers as protection against pirates from the Stepstones.  "
+"My family has a small stone keep and several lookout towers that double as lighthouses.  We take our duty to protect the land very carefully as we have for "
+"generations since the original grant."
+
+"The Westerlands":
+"commoner"
+"Merchant"
+"My family is heavily involved in buying and selling goods in Lannisport in the Westerlands. My family owns a number of ships that we commission to go back and forth "
+ "between the Westerlands, the Iron Islands, the Reach and the Arbor.  We trade gold from the Westerlands at these places for various goods that are more in demand. "
+ "We bring iron and wood from the North, wine and fruit form the Reach and Arbor, and Fish from the Iron Islands, all back to the city for a tidy profit."
+
+"My family hails from the Westerlands.  My family has for the past hundred years, worked in the gold mines of the Crag and surrounding areas. "
+"We have a small home near the mines that has been our own for generations.  The gold we mine feeds the coffers of our lord and the stipend he "
+"provides allows us to feed ourselves."
+
+"Knight"
+"My father was a sworn Knight as was his father before him as am I.  We have been in the service of our lord for generations. "
+". My family has a manor in Lannisport and a small keep out in the country.  We spend most of our time in the city managing the manor and visiting court."
+
+"My noble family is from the Westerlands.  We are tasked with protecting a section of the southern coast from pirates and raiders from the Iron Islands.  "
+"We have a wooden keep and a series of stone towers and a small curtain wall surrounding.  We take our duty to protect the land very carefully as we have for "
+"generations since the original grant."
+
+
+"The North":
+"commoner"
+"Merchant"
+"I come from a family of merchants out of White Harbor in the North.  We deal with many of the raw goods the North provides and ship them south and east in exchange for more of the southern luxuries. "
+ "Our ships sail north to Eastwatch By the Sea on occasion, and once, in the distant past, we even did business with the wildlings of Hardhome. "
+ "We take goods such as lumber and furs south and trade them for other luxury goods to sell to northern lords and merchants"
+
+"My family hails from the North.  We are descendants of the first men and have struggled to till the icy land for hundreds of years. "
+"We are generally poor subsistence farmers and struggle during the summers and autumns to grow enough wheat for the long cold winters. "
+"Despite its dangers, I wouldn't have it any other way, we have our own land, and our freedom to do as we choose"
+
+"Knight"
+"I come from a family of minor lords in the north. We are guaranteed protectors of some of the areas around flintcliff.  I myself became a Knight, adopting the seven "
+"and breaking with the tradition of the old gods"
+
+"My family is of noble birth from the North.  We were members of the Flint clan, of the mountain clans, but have a more settled lifestyle currently.  "
+"We have a small hamlet that we watch over from a wooden keep in the vicinity of deepwood motte.  The farmers work the land and pay tribute and we protect "
+"them from wildlings and raiders"
+
+"The Riverlands":
+"commoner"
+"Merchant"
+"I come from a large family of merchants that ply the waters of the trident and it's many forks in the riverlands.  Our ships move up and down the river buying and selling goods as they go. "
+ "I was born on one of these boats and my entire family lives on a large flatship. We have no manor of lands to speak of and move from place to place with the currents"
+
+"We, my family and I, are farmers from the Riverlands.  We recently resettled near the Saltpans after our farm was burnt in a war between the Blakens and Blackwoods. "
+"Our new lord has guaranteed us protection from the fighting that is all too common in this land. "
+"We have a chance now to thrive and create a home for ourselves in a new area"
+
+"Knight"
+"My family recently moved to the Riverlands to get out of the bustle and squalor of Kings Landing. My father was a younger brother of a knight sworn to the service of one of the lords "
+"of the crownlands and after his marriage, sought to become knighted himself.  After proving himself in battle, our lord knighted him and took him into his service.  I have sworn to "
+"follow in my father's footsteps"
+
+"I am of noble birth and my family comes from the Riverlands along the Green Fork.  We have a keep overlooking a bend in the river and ensure and protect the trade that passes through, "
+"in exchange for a small toll of course. Our keep is modest by most standards but it makes do and we have a number of sworn knights who help enforce the king's peace. "
+"It is a good quiet life for the most part, generally uneventful"
+
+"Crownlands":
+"commoner"
+"Merchant"
+"I come from a merchant family from King's Landing.  We make our living by owning and operating a fleet of ships that operate out of the Crownlands and sail all across the narrow sea.  We buy goods from "
+ "as far away as Volantis and sell them at markets up and down the east coast of Westeros.  We sell many of the goods that we buy in the markets of Kings landing to other traders who move them inland"
+
+"My family hails from the Kingslanding in the Crownlands.  My father was a butcher and my mother his assistant.  We never had much growing up, nor any land to call our own, but it was a fair living."
+"We live in a small shack in the shadow of Visenya's hill and give thanks that we are not stuck in fleabottom.  My family mostly serves the various lords and merchants who ply their trade at the capital"
+
+"Knight"
+"My family is from the Crownlands and my father and I have served as Knights to our lord inside of King's Landing. My father was a younger brother of a knight sworn to the service of one of the lords "
+"of the crownlands and after his marriage, sought to become knighted himself.  After proving himself in battle, our lord knighted him and took him into his service.  I have sworn to "
+"follow in my father's footsteps"
+
+"My noble family hails from the Crownlands.  We have lands surrounding duskendale that are worked to provide for food for king's landing.  We have a nice stone keep and a small town surrounding it. "
+"We have a number of sworn knight families to help us govern the area. "
+"It is a good quiet life for the most part, generally uneventful"
+
+"Iron Islands":
+"commoner"
+"Merchant"
+"I come from a merchant family from Pyke.  Being merchants, we aren't considered much better than farmers, being that we don't pay the iron price, but at least we sail so we have that going for us. "
+ "We deal largely in fish and the loot that the reavers bring home after their adventures across the seas. We sail far to the south to ply our trade often, the markets in the Islands and the North are not "
+"as large on this side of the continent as those on the narrow sea"
+
+"I come from a long line of fisherman and sailors from the Iron Islands.  My father was wounded in a finger dance when young and decided to settle down to farm the land.  We live on the isle of Pyke and "
+"provide food to the ships that put in at the port. It is a hard living, the land is not good and farmers are considered the lowliest of the classes in the Islands but we make do"
+# if lord
+
+"Knight"
+"I come from a family of nobles from the Iron Islands. I wanted to escape the life of raiding so I snuck aboard a ship when I was young and became a squire in the service of a Reach Lord. "
+"After I was knighted, my guilt about leaving my family compelled me to return home. I swore my sword to my lord and have been in his service ever since"
+
+"My family is of noble birth and descended from the ancient reavers of Harlaw in the Iron Islands.  We have fallen on hard times however, and our fleet is not nearly as large as it once was. "
+"We have fewer than ten ships and hardly the crew to command them.  Our keep is in dis-repair and all-together far too large for what is left of the garrison. "
+"We still have our name however, and our lands, however poor they may be"
+
+"North of The Wall":
+home_desc = "North of the Wall, there are no social classes.  Unlike the kneelers, we are free to do whatever we want when we want. We freefolk seek out the land that we choose. "
+home_desc += "My father was a trapper from a village by the bay of seals and my mother a raider venturing into the north to bring back such food and goods as we needed to get by in this hard land"
+
+
+"Dorne":
+"commoner"
+"Merchant"
+"My merchant family trades many goods between Dorne and the lands to the east and south. We have a large manor in Sunspear where we coordinate our trade voyages.  We send ships south to the Summer Isles trading the wine of the Arbor "
+ "and Dorne for various exotic goods that we then trade in Kings Landing or Oldtown. In the east we sell the goods of Westeros and collect various spices and dyes to sell to rich lords. It is a rather comfortable lifestyle, "
+"if a bit hot in the summer"  
+  
+"I come from a long line of fisherman and sailors from the river Greenblood in Dorne.  My father was a soldier in the service of our current lord, and as a result of his valor in the "
+"stepstones was granted a piece of land to farm from our lord's holdings.  The land is not great but we make do, we have a small house and some livestock that allow us to be self sufficent. "
+"It is a quiet life but I wouldn't have it any other way and the ground does have a certainty to it that the river lacked"
+
+"Knight"
+"I come from a family of nobles from Dorne. My father was the youngest in a large house so set out as a sellsword hedge knight to make his fortune.  After a number of years on the road he came to the attention of our "
+"current lord. My family has been in his service ever since, and I, like my father, will be a knight in his household"
+
+"My family can trace it's lineage back to that of the Rhoynar who first came over in their ships to settle in Dorne so many years ago. We have, for generations, had a keep overlooking the sea of Dorne to "
+"the north.  The land surrounding our keep is fertile enough for fruit and walnuts and that is what is grown there.  We trade with the stormlands for the grain we need for the offseason and have about a dozen knights "
+"in our service"
+
+"The Stormlands":
+"commoner"
+"Merchant"
+"My merchant family trades many goods between the Stormlands and the lands to the east and south. We have a large manor near Griffen's Roost where we coordinate our trade voyages.  We send ships south to the Summer Isles trading the wine of the Arbor "
+ "and Dorne for various exotic goods that we then trade in Kings Landing or Oldtown. In the east we sell the goods of Westeros and collect various spices and dyes to sell to rich lords. It is a rather comfortable lifestyle, if I don't say so myself"
+
+"My family has worked and farmed the land around Stonehelm in the Stormlands for generations.  My father was a seargant in the army of the stormlord many years ago. We have a decently fertile plot of land that provides all that we "
+"need to survive."
+"It is a quiet life but I wouldn't have it any other way"
+
+"Knight"
+"I hail from a knightly family in the Stormlands. My father was the youngest in a large house so set out as a sellsword hedge knight to make his fortune.  After a number of years on the road he came to the attention of our "
+"current lord. My family has been in his service ever since, and I, like my father, will be a knight in his household"  
+
+"My noble family is one of many from the Stormlands tasked with the mission of protecting the marches from forign aggressors. The Dornish marches are constantly fought over between the Stormlands the Reach and Dorne so we must "
+"be ever vigiliant for forigners, potential spies, and invaders. Our castle has a decent garrison and we have a number of knights sworn to our service"
+

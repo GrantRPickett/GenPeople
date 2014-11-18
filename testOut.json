@@ -1,0 +1,217 @@
+{
+  "people": [
+    {
+      "answers": [
+        {
+          "subject": "home", 
+          "suggest": 2
+        }, 
+        {
+          "subject": "livelihood", 
+          "suggest": 2
+        }, 
+        {
+          "subject": "childhood", 
+          "suggest": 1
+        }
+      ], 
+      "class": {
+        "detail": "commoner", 
+        "exclusions": [
+          {
+            "category": "childEvents", 
+            "detail": "apprentice"
+          }
+        ], 
+        "selectWeight": 0.889
+      }, 
+      "correlations": [], 
+      "default-ask": [
+        {
+          "text": "The traveller looks annoyed by your question, for some reason, and declines to answer.", 
+          "topics": []
+        }
+      ], 
+      "default-tell": [
+        {
+          "text": "Sounds Interesting", 
+          "topics": []
+        }
+      ], 
+      "description": "This person is hairy. This person has long hair. This person likes money. This person is warm.", 
+      "detailList": [], 
+      "events": [
+        {
+          "FIELD2": "1", 
+          "FIELD6": "squire", 
+          "FIELD7": "1", 
+          "FIELD8": "childhood", 
+          "description": "was a squire to a noble knight.", 
+          "detail": "squire", 
+          "exclusions": [
+            {
+              "category": "class", 
+              "detail": "commoner"
+            }
+          ]
+        }
+      ], 
+      "exclusions": [
+        {
+          "category": "childEvents", 
+          "detail": "apprentice"
+        }, 
+        {
+          "category": "physical", 
+          "detail": "bald"
+        }, 
+        {
+          "category": "physical", 
+          "detail": "bald"
+        }, 
+        {
+          "category": "physical", 
+          "detail": "short hair"
+        }, 
+        {
+          "category": "mental", 
+          "detail": "charitable"
+        }, 
+        {
+          "category": "mental", 
+          "detail": "cold"
+        }, 
+        {
+          "category": "class", 
+          "detail": "commoner"
+        }
+      ], 
+      "farewell": "goodbye", 
+      "greeting": "hello", 
+      "home": {
+        "location": "The Westerlands", 
+        "selectWeight": 0.17
+      }, 
+      "lord": {
+        "first": "Gawen", 
+        "last": "Mormont"
+      }, 
+      "mental": [
+        {
+          "description": "This person likes money", 
+          "detail": "greedy", 
+          "exclusions": [
+            {
+              "category": "mental", 
+              "detail": "charitable"
+            }
+          ]
+        }, 
+        {
+          "description": "This person is warm", 
+          "detail": "warm", 
+          "exclusions": [
+            {
+              "category": "mental", 
+              "detail": "cold"
+            }
+          ]
+        }
+      ], 
+      "name": {
+        "first": "Roland", 
+        "last": "Farwynd"
+      }, 
+      "physical": [
+        {
+          "description": "This person is hairy", 
+          "detail": "hairy", 
+          "exclusions": [
+            {
+              "category": "physical", 
+              "detail": "bald"
+            }
+          ]
+        }, 
+        {
+          "description": "This person has long hair", 
+          "detail": "long hair", 
+          "exclusions": [
+            {
+              "category": "physical", 
+              "detail": "bald"
+            }, 
+            {
+              "category": "physical", 
+              "detail": "short hair"
+            }
+          ]
+        }
+      ], 
+      "profession": {
+        "detail": "fisherman", 
+        "selectWeight": 1
+      }, 
+      "remarks": [], 
+      "social": [], 
+      "subjects": [
+        {
+          "familiar": true, 
+          "lines": [
+            {
+              "node": "", 
+              "text": "I am from The Westerlands", 
+              "topics": [
+                {
+                  "suggest": "3", 
+                  "topic": "home"
+                }
+              ]
+            }, 
+            {
+              "node": "", 
+              "text": "My family serves Lord Mormont", 
+              "topics": []
+            }
+          ], 
+          "list type": "stop-list", 
+          "subject": "home"
+        }, 
+        {
+          "familiar": true, 
+          "lines": [
+            {
+              "node": "", 
+              "text": "I am a fisherman.", 
+              "topics": []
+            }, 
+            {
+              "node": "", 
+              "text": "I am a commoner.", 
+              "topics": []
+            }
+          ], 
+          "list type": "stop-list", 
+          "subject": "livelihood"
+        }, 
+        {
+          "familiar": true, 
+          "lines": [
+            {
+              "node": "", 
+              "text": "I was born in 4387 to a commoner family.", 
+              "topics": [
+                {
+                  "suggest": "3", 
+                  "topic": "childhood"
+                }
+              ]
+            }
+          ], 
+          "list type": "stop-list", 
+          "subject": "childhood"
+        }
+      ]
+    }
+  ]
+}

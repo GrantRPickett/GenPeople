@@ -1,0 +1,92 @@
+{
+    "people": [
+        {
+            "name": {
+                "first": "test",
+                "last": "name"
+            },
+            "description": "TALL",
+            "greeting": "hello",
+            "farewell": "goodbye",
+            "answers": [
+                {
+                    "subject": "Foo",
+                    "suggest": "-1"
+                }
+            ],
+            "remarks": [
+                {
+                    "subject": "Bar",
+                    "suggest": "1"
+                }
+            ],
+            "default-ask": [
+                {
+                    "text": "The person you are speaking to seems momentarily lost in thought, and apparently fails to hear your question.",
+                    "topics": [
+                        {
+                            "topic": "test",
+                            "suggest": "3"
+                        }
+                    ],
+                    "node": ""
+                },
+                {
+                    "text": "The traveller mutters something under his breath, which you fail to catch.",
+                    "topics": []
+                },
+                {
+                    "text": "The traveller looks annoyed by your question, for some reason, and declines to answer.",
+                    "topics": []
+                }
+            ],
+            "default-tell": [
+                {
+                    "text": "Sounds Interesting"
+                }
+            ],
+            "subjects": [
+                {
+                    "subject": "Foo",
+                    "lines": [
+                        {
+                            "text": "Foo.",
+                            "topics": [
+                                {
+                                    "topic": "Bar",
+                                    "suggest": "3"
+                                },
+                                {
+                                    "topic": "Foo",
+                                    "suggest": "4"
+                                }
+                            ]
+                        }
+                    ],
+                    "list type": "stop-list",
+                    "familiar": false
+                },
+                {
+                    "subject": "Bar",
+                    "lines": [
+                        {
+                            "text": "Bar",
+                            "topics": [
+                                {
+                                    "topic": "Bar",
+                                    "suggest": "3"
+                                },
+                                {
+                                    "topic": "Foo",
+                                    "suggest": "3"
+                                }
+                            ]
+                        }
+                    ],
+                    "list type": "stop-list",
+                    "familiar": true
+                }
+            ]
+        }
+    ]
+}

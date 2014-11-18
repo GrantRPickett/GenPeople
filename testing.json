@@ -1,0 +1,28 @@
+{
+    "lines": {
+        "line1": {
+            "words": "words and things",
+            "topics": [
+                "words",
+                "things"
+            ],
+            "reveal": [
+                "other",
+                "stuff"
+            ],
+            "node": "a"
+        },
+        "line2": {
+            "words": "words and things",
+            "topics": [
+                "words",
+                "things"
+            ],
+            "reveal": [
+                "other",
+                "stuff"
+            ],
+            "node": "b"
+        }
+    }
+}

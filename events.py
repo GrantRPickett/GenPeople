@@ -67,11 +67,12 @@ class Events():
                         #print event_dict["influences"]['mults'][i][multdex]
         
         probabilities /= probabilities.sum() 
-        
+        print probabilities
         #print probabilities         
         event["value"] = self.weighted_values(values, probabilities, 1)[0]
         # this is where the feedback to the traits list would go
         eventdex = np.nonzero(values == event["value"])[0]
+        print eventdex
         effect_dict = event_dict["effects"]
         result_traits = []
         new_trait = {}

@@ -1,0 +1,24 @@
+Blane Arryn is a person.
+ The description is "This person is short. This person is sick. This person is weak. This person has a reputation for getting the job done. This person likes to give away money. This person is punctual. This person appears to be very important as represented by their clothing.  Everything they wear is well tailored and finely made.  They have a fine cloak covering their shoulders of silver and blue."
+ Asking Blane Arryn about something is Blane-chatting. 
+Telling Blane Arryn about something is Blane-chatting. 
+Understand "childhood" or "your childhood" or "his childhood" as "[childhood]".
+Understand "home" or "your home" or "his home" as "[region]".
+Understand "adulthood" or "your adulthood" or "his adulthood" as "[adulthood]".
+
+After saying hello to Blane Arryn:
+say "'Hello there!' you say.[paragraph break]Blane Arryn says 'Hello, good day to you.' They politely respond. They look slightly annoyed to have been addressed by someone of common birth."
+
+After saying goodbye to Blane Arryn when the farewell type is explicit:
+say "'Goodbye' you say.[paragraph break]'Goodbye,' they state plainly and continue on their way."
+After Blane-chatting when the topic understood matches "[childhood]":
+Say "[one of]I was born in 4359 to a lord family. When I was born it was noticed that I was remarkably weak for my age.
+[or]I hail from The Westerlands where my family is sworn to Lord Tywin Pyke.[or]Our lord was horrible and his mistreatment made me greedy.
+[or]My father was a lord like myself and died in a war. In addition my mother loved my father very much and as a result I became shy.
+[or]Very early I started to act distracted. I know that I am distracted and I have to live with it.[or]I developed some good habits young and became very charitable early in life. I consider myself really lucky to be charitable.[or] As a child I experienced was a squire to a noble knight. Almost immediately I found I was squire.[or]I disappointed my parents at an early age and was very greedy. I have been greedy ever since.[or]My parents hated that I was very depressed as a young boy. I would be less depressed but that's not who I am.[cycling]".
+After Blane-chatting when the topic understood matches "[region]":
+Say "[one of]My family is sworn to Lord Tywin Pyke.[or] My noble family is from the Westerlands.[or]  We are tasked with protecting a section of the southern coast from pirates and raiders from the Iron Islands.[or]  We have a wooden keep and a series of stone towers and a small curtain wall surrounding.[or]  We take our duty to protect the land very carefully as we have for generations since the original grant.[cycling]".
+After Blane-chatting when the topic understood matches "[adulthood]":
+Say "[one of]I found myself growing older, turning into a young man.[or] When I was finally an adult I became a lord after my father passed away. I have been a Lord ever since, for better or worse.[or] As an adult I had the good fortune to experience was forced into a marriage that I did not want. My forced marriage worked out for me fortuneatly. It didn't really have a lasting effect.[or] Unfortunately, as an adult I had one of my parents die in an accident. However, luckily It didn't really have a lasting effect.[or]I moved as a young adult.  I sought my fortune in other lands and places.[or]Fortunately, over time, I became diligent.[or]I became very greedy partway through life.[cycling]".
+Clothing is a kind of thing.  Clothing is wearable.
+A robe is clothing. The description is "This robe is very noble in appearance.  Only a lord should wear such a garment." Blane Arryn is wearing a robe.A cloak is clothing. The description is "This cloak is very noble in appearance.  Only a lord should wear such a garment." Blane Arryn is wearing a cloak.

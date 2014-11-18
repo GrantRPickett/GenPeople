@@ -44,12 +44,16 @@ def main():
     
     inform = "GenPerson by Grant Pickett begins here."
     inform += "\n"
-    inform += "Include Conversation Framework by Eric Eve."
-    inform += name + " is a person.\n"
-    synonyms = 'Understand "childhood" or "your childhood" or "his childhood" as "[childhood]".\n'
-    synonyms += 'Understand "home" or "your home" or "his home" as "[region]".\n'
-    synonyms += 'Understand "adulthood" or "your adulthood" or "his adulthood" as "[adulthood]".\n'
-
+    inform += "Include Conversation Rules by Eric Eve.\n"
+    inform += "Instead of asking someone about something:\n"
+    inform += "follow the unknown quizzing rule of the noun.\n"
+    inform += "Instead of telling someone about something:\n"
+    inform += "follow the unknown informing rule of the noun.\n"
+    
+    #could have loop to generate multiple characters.
+    inform += "GenPerson1 is a person.\n"
+    inform += 'The printed name of GenPerson1 is "'+name+'".\n'
+    inform += 'Understand "'+ name + '" and "' +name.split(' ')[0]+'" as GenPerson1.\n'
     l1descs = ". ".join(descs['1'])
     l1descs += "."
     extra_items = "Clothing is a kind of thing.  Clothing is wearable.\n"
@@ -86,35 +90,43 @@ def main():
             extra_items += 'A cloak is clothing. The description is "This cloak is very noble in appearance.  Only a lord should wear such a garment." ' + name + " is wearing a cloak."
     inform += ' The description is "' + l1descs + '"\n '
     
-    inform += "Asking " + name + " about something is " + name.split(' ')[0] + "-chatting. \n"
-    inform += "Telling " + name + " about something is " + name.split(' ')[0] + "-chatting. \n"
+    inform += "The quizzing table is the Table of GenPerson1 Answers.\n"
+
+    inform += "The informing table is the Table of GenPerson1 Remarks.\n"
+
+    inform += "The unknown quizzing rule is the GenPerson1 default-quiz-response rule.\n"
+
+    inform += "The unknown informing rule is the GenPerson1 default-inform-response rule.\n"    
     
-    greeting = "After saying hello to " + name +":\n"
-    selfquizzing = "After quizzing " + name + " about " + name + ":\n"
+    inform += "This is the GenPerson1 default-quiz-response rule:\n"
+    inform += "show the next response from the Table of GenPerson1 Default Quiz Responses.\n"
+
+    inform += "This is the GenPerson1 default-inform-response rule:\n"
+    inform += "show the next response from the Table of GenPerson1 Default Inform Responses.\n"
+
+    inform += "\nTable of GenPerson1 Default Quiz Responses\n"
+    inform += "response\n"
+    inform += '"The person you are speaking to seems momentarily lost in thought, and apparently fails to hear your question."\n'
+    inform += '"The traveller mutters something under his breath, which you fail to catch."\n'
+    inform += '"The traveller looks annoyed by your question, for some reason, and declines to answer."\n'
+
+    inform += "\nTable of GenPerson1 Default Inform Responses\n"
+    inform += "response\n"
+    inform += '"Sounds Interesting"\n'
+    
+    greeting = "After saying hello to GenPerson1:\n"
+    selfquizzing = "After quizzing GenPerson1 about GenPerson1:\n"
     
     #General Topic:  Framing Context, Trait Sentence, Trait Sentence, (Cause Trait Sentence, Event Sentence (or Two), Result Trait (or Two), Special Context Sentence) * N  
     
     #childhood = 'Understand "childhood" or "your childhood" or "his childhood" as "[childhood]".\n'
     
-    childhood = "After " + name.split(' ')[0] + '-chatting when the topic understood matches "[childhood]":\n'
+    childhood = build_childhood(traits_dict, elist, person, phys, descs, psych, age, lord)
     
-    childhood += 'Say "'
-    
-    childhood += build_childhood(traits_dict, elist, person, phys, descs, psych, age, lord)
-    childhood += '".'
-    
-    area = "After " + name.split(' ')[0] + '-chatting when the topic understood matches "[region]":\n'
-    
-    area += 'Say "'
-    area += build_area(traits_dict, elist, person, phys, descs, psych, age, person.events.get_profession()["value"], lord)
-    area += '".'
+    area = build_area(traits_dict, elist, person, phys, descs, psych, age, person.events.get_profession()["value"], lord)
     
     
-    adult = "After " + name.split(' ')[0] + '-chatting when the topic understood matches "[adulthood]":\n'
-    
-    adult += 'Say "'
-    adult += build_adulthood(traits_dict, elist, person, phys, descs, psych, age)
-    adult += '".'
+    adult = build_adulthood(traits_dict, elist, person, phys, descs, psych, age)
     
 
             
@@ -149,11 +161,26 @@ def main():
     #inform += selfquizzing
     
     farewell = "After saying goodbye to " + name + " when the farewell type is explicit:\n"
-    farewell += 'say "' + "'Goodbye' you say.[paragraph break]'Goodbye,' they state plainly and continue on their way." + '"'
+    farewell += 'say "' + "'Goodbye' you say.' [paragraph break] 'Goodbye,' they state plainly and continue on their way." + '"'
+    inform += "\nTable of GenPerson1 Answers\n"
+    inform += "subject\tresponse rule\tresponse table\tsuggest\n"
+    inform += "GenPerson1\tGenPerson1 ask-self rule \t--\t1\n"
+    inform += "childhood\t--\tTable of GenPerson1 Childhood\t8\n"
+    inform += "adulthood\t--\tTable of GenPerson1 Adulthood\t5\n"
+    inform += "home\t--\tTable of GenPerson1 Home\t-1\n"
     
-    inform += synonyms
-    inform += "\n"
+    inform += "\nTable of GenPerson1 Remarks\n"
+    inform += "subject	response rule	response table	suggest\n"
+    inform += "GenPerson1	GenPerson1 tell-self rule	--	-1\n\n"
+    
+    inform += "This is the GenPerson1 ask-self rule:\n"
+    inform += 'say "I am feeling well today, thanks for asking."\n'
+
+    inform += "This is the GenPerson1 tell-self rule:\n"
+    inform += 'say "I know about myself already."\n'
+
     inform += greeting
+    greeting += "if the greeting type is explicit, follow the standard list suggested topics rule.\n"
     inform += "\n"
     inform += farewell
     inform += "\n"
@@ -166,7 +193,17 @@ def main():
     inform += "\n"
     
     inform += adult
-
+    
+    inform += "\nTable of Table Types (continued)\n"
+    inform += "tabname	index	tabtype\n"
+    inform += "Table of GenPerson1 Default Quiz Responses	0	shuffled-list\n"
+    inform += "Table of GenPerson1 Default Inform Responses	0	shuffled-list\n"
+    inform += "Table of GenPerson1 Childhood	0	stop-list\n"
+    inform += "Table of GenPerson1 Home	0	shuffled-list\n"
+    inform += "Table of GenPerson1 Adulthood	0	stop-list\n\n"
+    inform += "childhood is a familiar subject.\n"
+    inform += "adulthood is a familiar subject.\n"
+    inform += "home is a subject.\n"
     inform += "\n"
     inform += extra_items
     inform += "GenPerson ends here."
@@ -178,7 +215,7 @@ def main():
 def build_area(traits_dict, elist, person, phys, descs, psych, age, profession, lord):
     
     # When they were born is the Framing Context of the Childhood Topic
-    
+    Table = "Table of GenPerson1 Home\nresponse\n"
     Born = ""
     Region = ""
     Lord = ""
@@ -205,20 +242,20 @@ def build_area(traits_dict, elist, person, phys, descs, psych, age, profession, 
         if (social_class == "commoner"):
             if (profession == "Merchant"):
                 home_desc = "My family, although of common birth, is exceedingly wealthy.  We make a living buying and selling goods in the ports of Oldtown and the Arbor in the Reach.  My father is one of the "
-                home_desc += "greatest wine merchants in all of Westeros.  We have a small manor in Oldtown where I grew up that always smelled of cheese and wine"
+                home_desc += "greatest wine merchants in all of Westeros.  We have a small manor in Oldtown where I grew up that always smelled of cheese and wine."
             else:
                 home_desc = "My family comes from the reach, it is a fertile land and we have been farming the same plot for generations.  We grow fruit "
                 home_desc += " in abundance we have served our lord's family for many generations.  We have a small home in the northern region along the Roseroad near Bitterbridge."
-                home_desc += " Life is pretty plain for us, nothing really out of the ordinary"
+                home_desc += "Life is pretty plain for us, nothing really out of the ordinary."
         else:
             if (profession == "Knight"):
                 home_desc = "My father was a wandering swordsman out of the Westerlands who saved our lord from the Reach while serving as a Man at Arms in the war of the Ninepenny kings.  He was knighted for "
                 home_desc += "his actions in the war and was granted a plot of land in the area around Old Oak.  I took up my father's arms when he grew too weary and I have been a Knight in the "
-                home_desc += "service ever since"
+                home_desc += "service ever since."
             else:
                 home_desc = "My family has a small holding in the south of the Reach.  We govern over about twenty families of commoners who work the land and half half a dozen sworn swords."
-                home_desc += " We have a small motte and bailey to protect the peasants in times of need and a small hall for gatherings.  Our family has been in the area for generations, tracing"
-                home_desc += " our lineage all the way back to the bastard son of one of the Kings named Garth, I forget which"
+                home_desc += "We have a small motte and bailey to protect the peasants in times of need and a small hall for gatherings.  Our family has been in the area for generations, tracing"
+                home_desc += " our lineage all the way back to the bastard son of one of the Kings named Garth, I forget which."
         # if knight
 
         # if merchant
@@ -229,20 +266,20 @@ def build_area(traits_dict, elist, person, phys, descs, psych, age, profession, 
         if (social_class == "commoner"):
             if (profession == "Merchant"):
                 home_desc = "My family, although of common birth, is one of the richest in the Vale.  We make a living buying and selling goods in the ports of Gulltown, the Sisters, King's Landing, and even White Harbor."
-                home_desc +=  " My family trades in every type of good imaginable but we make most of our money selling the fruits of the Vale to the lords of Kings Landing and the barren North"
+                home_desc +=  "My family trades in every type of good imaginable but we make most of our money selling the fruits of the Vale to the lords of Kings Landing and the barren North."
             else:
                 home_desc = "My family hails from the Vale.  We have for generations lived and toiled in the soil at the foot of the great mountains in the vale of Arryn. "
                 home_desc += "We grow mostly grains to feed the soldiers that guard the vale and my father takes great pride in his work providing for the men at arms. "
-                home_desc += "We have a small house and several acres of land to call our own and it serves us well enough"
+                home_desc += "We have a small house and several acres of land to call our own and it serves us well enough."
         else:
             if (profession == "Knight"):
                 home_desc = "My father was a sworn Knight as was his father before him as am I.  We have been in the service of our lord for generations, many of my ancestors have been "
                 home_desc += "knights of the Vail over the years. We have a small bit of land worked by a couple families "
-                home_desc += "that we watch over in return for our service"
+                home_desc += "that we watch over in return for our service."
             else:
                 home_desc = "My noble family is from the Vale of Aryn.  There we guard some of the coast along the fingers as protection against pirates from the Stepstones.  "
                 home_desc += "My family has a small stone keep and several lookout towers that double as lighthouses.  We take our duty to protect the land very carefully as we have for "
-                home_desc += "generations since the original grant"
+                home_desc += "generations since the original grant."
         # if knight
 
         # if merchant
@@ -254,19 +291,19 @@ def build_area(traits_dict, elist, person, phys, descs, psych, age, profession, 
             if (profession == "Merchant"):
                 home_desc = "My family is heavily involved in buying and selling goods in Lannisport in the Westerlands. My family owns a number of ships that we commission to go back and forth "
                 home_desc +=  "between the Westerlands, the Iron Islands, the Reach and the Arbor.  We trade gold from the Westerlands at these places for various goods that are more in demand. "
-                home_desc +=  "We bring iron and wood from the North, wine and fruit form the Reach and Arbor, and Fish from the Iron Islands, all back to the city for a tidy profit"
+                home_desc +=  "We bring iron and wood from the North, wine and fruit form the Reach and Arbor, and Fish from the Iron Islands, all back to the city for a tidy profit."
             else:
                 home_desc = "My family hails from the Westerlands.  My family has for the past hundred years, worked in the gold mines of the Crag and surrounding areas. "
                 home_desc += "We have a small home near the mines that has been our own for generations.  The gold we mine feeds the coffers of our lord and the stipend he "
-                home_desc += "provides allows us to feed ourselves"
+                home_desc += "provides allows us to feed ourselves."
         else:
             if (profession == "Knight"):
                 home_desc = "My father was a sworn Knight as was his father before him as am I.  We have been in the service of our lord for generations. "
-                home_desc += ". My family has a manor in Lannisport and a small keep out in the country.  We spend most of our time in the city managing the manor and visiting court"
+                home_desc += ". My family has a manor in Lannisport and a small keep out in the country.  We spend most of our time in the city managing the manor and visiting court."
             else:
                 home_desc = "My noble family is from the Westerlands.  We are tasked with protecting a section of the southern coast from pirates and raiders from the Iron Islands.  "
                 home_desc += "We have a wooden keep and a series of stone towers and a small curtain wall surrounding.  We take our duty to protect the land very carefully as we have for "
-                home_desc += "generations since the original grant"
+                home_desc += "generations since the original grant."
         # if knight
 
         # if merchant
@@ -400,12 +437,14 @@ def build_area(traits_dict, elist, person, phys, descs, psych, age, profession, 
         
 
     Region += home_desc
+    Region = Region[:-1]
     r = Region.split(".")
-    Region = "[one of]" + ".[or]".join(r) + ".[cycling]"
-    return Region
+    filter(None, r)
+    Region = '"' +('."\n"').join(r)+'"\n\n'
+    return Table+Region
 
 def build_adulthood(traits_dict, elist, person, phys, descs, psych, age):
-    
+    Table = "Table of GenPerson1 Adulthood\nresponse\n"
     adult = ""
     
     intro = ""
@@ -437,11 +476,11 @@ def build_adulthood(traits_dict, elist, person, phys, descs, psych, age):
             else:
                 if (event["type"] == "bad"):
                     etext += " However, luckily"
-                etext += random.choice([" It had little impact on my life.",
-                                        " It didn't really have a lasting effect.",
-                                        " I wasn't changed much by the incident in the long term.",
-                                        " My life went on much the same afterwards.",
-                                        " I found that life wasn't very different afterwards."])
+                etext += random.choice(["It had little impact on my life.",
+                                        "It didn't really have a lasting effect.",
+                                        "I wasn't changed much by the incident in the long term.",
+                                        "My life went on much the same afterwards.",
+                                        "I found that life wasn't very different afterwards."])
             trauma += etext
             
         if event["cat"] == "profession":
@@ -457,29 +496,29 @@ def build_adulthood(traits_dict, elist, person, phys, descs, psych, age):
             etext += event["description"][0]
             # switch for different types of marriage
             if event["value"] == "GoodMarriage":
-                etext += random.choice([" My wife is my greatest companion, truely she is a treasure.",
-                                        " I am very happy with my wife.  We work very well together.",
-                                        " I am incredibly happy with my marriage."])
+                etext += random.choice(["My wife is my greatest companion, truely she is a treasure.",
+                                        "I am very happy with my wife.  We work very well together.",
+                                        "I am incredibly happy with my marriage."])
             elif event["value"] == "BadMarriage":
-                etext += random.choice([" My marriage has been rather turbulent, but we can't separate.",
-                                        " I'm not happy, but there is nothing I can do.",
-                                        " If I was allowed to escape my marriage, I would."])
+                etext += random.choice(["My marriage has been rather turbulent, but we can't separate.",
+                                        "I'm not happy, but there is nothing I can do.",
+                                        "If I was allowed to escape my marriage, I would."])
             elif event["value"] == "NeutralMarriage":
-                etext += random.choice([" I have a very typical marriage.  My wife and I are good companions.",
-                                        " My wife and I have worked very hard to raise our children and have come to respect each other.",
-                                        " My family is very typical and makes life generally comfortable."])
+                etext += random.choice(["I have a very typical marriage. My wife and I are good companions.",
+                                        "My wife and I have worked very hard to raise our children and have come to respect each other.",
+                                        "My family is very typical and makes life generally comfortable."])
             elif event["value"] == "EarlyMarriage":
-                 etext += random.choice([" Marrying early worked out for me, my wife and I are good companions.",
-                                        " Despite getting married early in my life, it seems to have worked out well.",
-                                        " My early marriage worked out for me."])
+                 etext += random.choice(["Marrying early worked out for me, my wife and I are good companions.",
+                                        "Despite getting married early in my life, it seems to have worked out well.",
+                                        "My early marriage worked out for me."])
             elif event["value"] == "ForcedMarriage":
-                etext += random.choice([" My forced marriage worked out for me fortuneatly.",
-                                        " Despite my best intent, our marriage has not been ideal.",
-                                        " It seems to be working out."])
+                etext += random.choice(["My forced marriage worked out for me fortuneatly.",
+                                        "Despite my best intent, our marriage has not been ideal.",
+                                        "It seems to be working out."])
             elif event["value"] == "LateMarriage":
-                etext += random.choice([" Getting married late has not allowed us to have many children.",
-                                        " Sometimes I regret waiting so long.",
-                                        " Waiting may not have been the best idea."])
+                etext += random.choice(["Getting married late has not allowed us to have many children.",
+                                        "Sometimes I regret waiting so long.",
+                                        "Waiting may not have been the best idea."])
             
             if (len(event["results"]) > 0):
                 for result in event["results"]:
@@ -500,46 +539,48 @@ def build_adulthood(traits_dict, elist, person, phys, descs, psych, age):
                                    "I never had a reason to get married, it always seemed more hastle than it was worth."])
         
     if (random.random() < .4):
-        moving += "[or]"
         moving += random.choice(["I moved occasionally as a young adult, trying to find a new place to live.",
                                  "I was displaced as a young adult, the home of my youth was destroyed in a war so I needed to find a new place to live.",
-                                 "I moved as a young adult.  Mostly I sought to find a new life for myself away from my parents.",
-                                 "I moved as a young adult.  I sought my fortune in other lands and places."])
+                                 "I moved as a young adult. Mostly I sought to find a new life for myself away from my parents.",
+                                 "I moved as a young adult. I sought my fortune in other lands and places."])
     
     
     
     for i in range(0, random.randint(1, 2)):
         if (random.random() > .5):
             if len(psych["2"]) > 0:
-                MoreTraits += "[or]"
                 MoreTraits += psych_adult_trait(random.choice(psych["2"]), 2)
         else:  
             if len(psych["1"]) > 0:
-                MoreTraits += "[or]"
                 MoreTraits += psych_adult_trait(random.choice(psych["1"]), 1)
     #print SomeTraits
     
     
 
         
-    adult += "[one of]"
-    adult += intro + "[or]"
+    adult += intro
     if (profession != ""):
-        adult += profession + "[or]"
-    adult += marriage + "[or]"
+        adult += profession
+    adult += marriage
     if (trauma != ""):
         adult += trauma
-    adult += moving
-    adult += MoreTraits + "[cycling]"
-    
-    return adult 
+    if (moving != ""):
+        adult += moving
+    if (MoreTraits != ""):
+        adult += MoreTraits
+    adult = adult[:-1]
+    a = adult.split(".")
+    filter(None, a)
+
+    adult =('."\n"').join(a)+ '"\n\n'
+    return Table+'"' +adult
 
 
 
 def build_childhood(traits_dict, elist, person, phys, descs, psych, age, lord):
     
     # When they were born is the Framing Context of the Childhood Topic
-    
+    Table = "\nTable of GenPerson1 Childhood\nresponse\n"
     Born = ""
     Region = ""
     Lord = ""
@@ -549,18 +590,17 @@ def build_childhood(traits_dict, elist, person, phys, descs, psych, age, lord):
     
     childhood = ""
     
-    Born = "I was born in " + age + " to a " + traits_dict["social"][0]["value"] + " family."
+    Born = "I was born in " + age + " to a " + traits_dict["social"][0]["value"] + "family."
     if (random.random() < .45) and (len(phys["1"]) > 0):
-        Born += " When I was born it was noticed that I was remarkably " + random.choice(phys["1"]) + ""
+        Born += "When I was born it was noticed that I was remarkably " + random.choice(phys["1"])
         if (random.random() < .7):
             Born += " for my age"
-        Born += ".\n"
         
     #childhood += Born
     
     # Where they were born is also part of the framing context
     
-    Region = "I hail from " + person.location.get_location() + " where my family is sworn to Lord " + lord +"."
+    Region = "I hail from "+ person.location.get_location() + " where my family is sworn to Lord " + lord + "."
     #print Region
     
     
@@ -571,12 +611,12 @@ def build_childhood(traits_dict, elist, person, phys, descs, psych, age, lord):
         if (random.random() < .50):
             if (len(psych["1"]) > 0):
                 Lord = "Our lord was " + random.choice(["very benevolent", "relatively uncaring", "not present often", "a just and honorable man"]) 
-                Lord += " and his actions inspired me to become " + random.choice(psych["1"]) + ".\n"
+                Lord += ' and his actions inspired me to become ' + random.choice(psych["1"]) + ". "
         # Bad lord
         else:
             if (len(psych["2"]) > 0):
                 Lord = "Our lord was " + random.choice(["horrible", "malicious", "relatively uncaring", "not present often", "cruel"]) + " and his mistreatment made me "
-                Lord += random.choice(psych["2"]) + ".\n"
+                Lord += random.choice(psych["2"]) + ". "
             
         #print Lord
     
@@ -587,13 +627,12 @@ def build_childhood(traits_dict, elist, person, phys, descs, psych, age, lord):
         if (random.random() < .4):
             Family +=  ". In addition my mother "+ random.choice(["died in childbirth", "loved my father very much", "was very important to me", "tried to hold the family together to no avail"]) + " and as a result I became "
             Family += random.choice(psych["2"])
-        Family += ".\n"
     #print Family
     
     if (len(person.events.get_new_traits()) > 0):
         # Youth Childhood Event
         Youth = ""
-        Youth += "Because of my being " + random.choice(phys["1"]) + " and " + random.choice(phys["1"]) + " I became a " + random.choice(person.events.get_new_traits()) + ". "
+        Youth += '"Because of my being ' + random.choice(phys["1"]) + " and " + random.choice(phys["1"]) + " I became a " + random.choice(person.events.get_new_traits())
         
         Youth += random.choice(["It turned out to be a much better fit than I imagined at the time.",
                                 "My family really pushed me into it.",
@@ -609,23 +648,19 @@ def build_childhood(traits_dict, elist, person, phys, descs, psych, age, lord):
             if len(psych["2"]) > 0:
                 
                 SomeTraits += psych_child_trait(random.choice(psych["2"]), 2)
-                SomeTraits += "[or]"
         else:  
             if len(psych["1"]) > 0:
                 
                 SomeTraits += psych_child_trait(random.choice(psych["1"]), 1)
-                SomeTraits += "[or]"
             
     MoreTraits = ""
     
     for i in range(0, random.randint(1, 2)):
         if (random.random() > .5):
             if len(psych["2"]) > 0:
-                MoreTraits += "[or]"
                 MoreTraits += psych_child_trait(random.choice(psych["2"]), 2)
         else:  
             if len(psych["1"]) > 0:
-                MoreTraits += "[or]"
                 MoreTraits += psych_child_trait(random.choice(psych["1"]), 1)
     #print SomeTraits
     
@@ -634,17 +669,22 @@ def build_childhood(traits_dict, elist, person, phys, descs, psych, age, lord):
     for event in child_events:
         ChildEvents += build_child_event(event)
     
-    childhood += "[one of]"
-    childhood += Born + "[or]"
-    childhood += Region + "[or]"
-    childhood += Lord + "[or]"
+    childhood += Born
+    childhood += Region
+    childhood += Lord
     if Family != "":
-        childhood += Family + "[or]"
-    childhood += SomeTraits
-    childhood += ChildEvents
-    childhood += MoreTraits + "[cycling]"
-    
-    return childhood  
+        childhood += Family
+    if SomeTraits != "":    
+        childhood += SomeTraits
+    if ChildEvents != "":     
+        childhood += ChildEvents
+    if MoreTraits != "": 
+        childhood += MoreTraits
+    childhood =childhood[:-1]
+    c = childhood.split(".")
+    filter(None, c)
+    childhood = ('."\n"').join(c) +'"\n'
+    return Table+'"' +childhood
     
      
     
@@ -657,59 +697,59 @@ def build_child_event(event):
             etext += get_result_text(result)
     else:
         if (event["type"] == "bad"):
-            etext += " However, luckily"
-        etext += random.choice([" It had little impact on my life.",
-                                " It didn't really have a lasting effect.",
-                                " I wasn't changed much by the incident in the long term.",
-                                " My life went on much the same afterwards.",
-                                " I found that life wasn't very different afterwards."])
+            etext += "However, luckily"
+        etext += random.choice(["It had little impact on my life.",
+                                "It didn't really have a lasting effect.",
+                                "I wasn't changed much by the incident in the long term.",
+                                "My life went on much the same afterwards.",
+                                "I found that life wasn't very different afterwards."])
         
     return etext
 
 def get_result_text(result):
-    text = random.choice([" As a result of this, I became (trait)",
-                          " After the incident I became very (trait) as a result.",
-                          " When it was over, I found myself a changed man.  I became had become (trait) almost overnight.",
-                          " I was changed by the event.  It left a profound effect on me.  I have been (trait) ever since.",
-                          " I became (trait) afterwards.",
-                          " I found I was (trait) after that.",
-                          " I very soon found I was (trait) as a result.",
-                          " Almost immediately I found I was (trait)."])
+    text = random.choice(["As a result of this, I became (trait)",
+                          "After the incident I became very (trait) as a result.",
+                          "When it was over, I found myself a changed man.  I became had become (trait) almost overnight.",
+                          "I was changed by the event.  It left a profound effect on me.  I have been (trait) ever since.",
+                          "I became (trait) afterwards.",
+                          "I found I was (trait) after that.",
+                          "I very soon found I was (trait) as a result.",
+                          "Almost immediately I found I was (trait)."])
     return text.replace("(trait)", result["value"])
 
 def get_event_text(age, type):
     start_text = ""
     if type == "bad":
-        start_text = random.choice([" As (age) I had the misfortune to experience ",
-                                    " Unfortunately, as (age) I experienced ",
-                                    " When I was (age) I was subjected to "])
+        start_text = random.choice(["As (age) I had the misfortune to experience ",
+                                    "Unfortunately, as (age) I experienced ",
+                                    "When I was (age) I was subjected to "])
                                     
     elif type == "good":
-        start_text = random.choice([" As (age) I had the good fortune to experience ",
-                                    " Fortunately, as (age) I experienced ",
-                                    " When I was (age) I got to witness "])
+        start_text = random.choice(["As (age) I had the good fortune to experience ",
+                                    "Fortunately, as (age) I experienced ",
+                                    "When I was (age) I got to witness "])
     else:
-        start_text = random.choice([" As (age) I experienced ",
-                                    " When I was (age) I witnessed"])
+        start_text = random.choice(["As (age) I experienced ",
+                                    "When I was (age) I witnessed"])
     return start_text.replace("(age)", age)
 
 def get_event_text_2(age, type):
     start_text = ""
     if type == "bad":
-        start_text = random.choice([" As (age) I had the misfortune to ",
-                                    " Unfortunately, as (age) I ",
-                                    " When I was (age) I "])
+        start_text = random.choice(["As (age) I had the misfortune to ",
+                                    "Unfortunately, as (age) I ",
+                                    "When I was (age) I "])
                                     
     elif type == "good":
-        start_text = random.choice([" As (age) I had the good fortune to ",
-                                    " Fortunately, as (age) I ",
-                                    " When I was (age) I "])
+        start_text = random.choice(["As (age) I had the good fortune to ",
+                                    "Fortunately, as (age) I ",
+                                    "When I was (age) I "])
     else:
-        start_text = random.choice([" As (age) I ",
-                                    " When I was (age) I ",
-                                    " When I was finally (age) I ",
-                                    " Once I reached (age) I ",
-                                    " After becoming (age) I "])
+        start_text = random.choice(["As (age) I ",
+                                    "When I was (age) I ",
+                                    "When I was finally (age) I ",
+                                    "Once I reached (age) I ",
+                                    "After becoming (age) I "])
     return start_text.replace("(age)", age)
     
     
@@ -739,25 +779,25 @@ def psych_child_trait(trait, level):
         
     start = random.choice(starts)
     
-    mids = [" I don't know if it was my parents who taught me, or if it was just something I picked up.",
-            " It was an interesting time in my life and I have felt very (trait) ever since.",
-            " I am not as (trait) as I once was, though I still feel that way sometimes.",
-            " Overtime my feelings of (trait) are lessened, but the roots are still there.",
-            " I still feel (trait) so many years later.",
-            " I am still (trait) to this day.",
-            " I have been (trait) ever since."]
+    mids = ["I don't know if it was my parents who taught me, or if it was just something I picked up.",
+            "It was an interesting time in my life and I have felt very (trait) ever since.",
+            "I am not as (trait) as I once was, though I still feel that way sometimes.",
+            "Overtime my feelings of (trait) are lessened, but the roots are still there.",
+            "I still feel (trait) so many years later.",
+            "I am still (trait) to this day.",
+            "I have been (trait) ever since."]
     
     if (level == 1):
-        mids += [" I am rather blessed to be (trait), aren't I?",
-                 " I consider myself really lucky to be (trait).",
-                 " Kinda lucky to be (trait) I guess.",
-                 " Luckily, I am rather (trait) still."]
+        mids += ["I am rather blessed to be (trait), aren't I?",
+                 "I consider myself really lucky to be (trait).",
+                 "Kinda lucky to be (trait) I guess.",
+                 "Luckily, I am rather (trait) still."]
     
     elif (level == 2):
-        mids += [" I would be less (trait) but that's not who I am.",
-                 " Sometimes I don't want to be (trait) but there's not much I can do about it.",
-                 " I wish I was less (trait).",
-                 " I know that I am (trait) and I have to live with it."]
+        mids += ["I would be less (trait) but that's not who I am.",
+                 "Sometimes I don't want to be (trait) but there's not much I can do about it.",
+                 "I wish I was less (trait).",
+                 "I know that I am (trait) and I have to live with it."]
         
     sent = start
     if random.random() > .5:
@@ -790,25 +830,25 @@ def psych_adult_trait(trait, level):
         
     start = random.choice(starts)
     
-    mids = [" I don't know if it was my family who taught me, or if it was just something I picked up.",
-            " It was an interesting time in my life and I have felt very (trait) ever since.",
-            " I am not as (trait) as I once was, though I still feel that way sometimes.",
-            " Overtime my feelings of (trait) are lessened, but the roots are still there.",
-            " I still feel (trait) so many years later.",
-            " I am still (trait) to this day.",
-            " I have been (trait) ever since."]
+    mids = ["I don't know if it was my family who taught me, or if it was just something I picked up.",
+            "It was an interesting time in my life and I have felt very (trait) ever since.",
+            "I am not as (trait) as I once was, though I still feel that way sometimes.",
+            "Overtime my feelings of (trait) are lessened, but the roots are still there.",
+            "I still feel (trait) so many years later.",
+            "I am still (trait) to this day.",
+            "I have been (trait) ever since."]
     
     if (level == 1):
-        mids += [" I am rather blessed to be (trait), aren't I?",
-                 " I consider myself really lucky to be (trait).",
-                 " Kinda lucky to be (trait) I guess.",
-                 " Luckily, I am rather (trait) still."]
+        mids += ["I am rather blessed to be (trait), aren't I?",
+                 "I consider myself really lucky to be (trait).",
+                 "Kinda lucky to be (trait) I guess.",
+                 "Luckily, I am rather (trait) still."]
     
     elif (level == 2):
-        mids += [" I would be less (trait) but that's not who I am.",
-                 " Sometimes I don't want to be (trait) but there's not much I can do about it.",
-                 " I wish I was less (trait).",
-                 " I know that I am (trait) and I have to live with it."]
+        mids += ["I would be less (trait) but that's not who I am.",
+                 "Sometimes I don't want to be (trait) but there's not much I can do about it.",
+                 "I wish I was less (trait).",
+                 "I know that I am (trait) and I have to live with it."]
         
     sent = start
     if random.random() > .5:
