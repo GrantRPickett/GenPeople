@@ -26,14 +26,14 @@ Include ComplexNPCs by Grant Pickett
 ComplexNPC0 is in the room.
 ```
 
-Push the Go button
+Push the Go button.
 The translation should succeed and the story should display:
 ```inform7
 room
 You can see Henk Cook here.
 ```
 Talk to the character by typing:
-greet
-ask about home (x2)
-ask about livilihood (x2)
-look at him
+greet  
+ask about home (x2)  
+ask about livilihood (x2)  
+look at him  
