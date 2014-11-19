@@ -33,7 +33,7 @@ room
 You can see Henk Cook here.
 ```
 Talk to the character by typing:
->greet
->ask about home (x2)
->ask about livilihood (x2)
->look at him
+greet
+ask about home (x2)
+ask about livilihood (x2)
+look at him
