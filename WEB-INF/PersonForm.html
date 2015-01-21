@@ -1,0 +1,603 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>ComplexNPC Web editor</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+<!-- fileIO -->
+<script src="http://bgrins.github.io/filereader.js/filereader.js"></script>
+<script src="http://eligrey.com/demos/FileSaver.js/FileSaver.js"></script>
+<link rel="stylesheet" type="text/css" media="all"
+	href="jsonform-master/opt/bootstrap.css">
+<link rel="stylesheet" type="text/css" media="all"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" media="all"
+	href="http://fonts.googleapis.com/css?family=Acme">
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<style>
+#eq>div {
+	margin: 15px;
+}
+</style>
+</head>
+<body>
+	<p>
+		Load a JSON document: <input type="file" id="loadDocument"
+			value="Load" />
+	</p>
+	<p>
+		Save a JSON document: <input type="button" id="saveDocument"
+			value="Download" />
+	</p>
+	<div id="file">
+		<form id="form"></form>
+	</div>
+	<div id="res"></div>
+
+	<script type="text/javascript" src="jsonform-master/jquery.min.js"></script>
+	<script type="text/javascript" src="jsonform-master/underscore.js"></script>
+	<script type="text/javascript" src="jsonform-master/opt/jsv.js"></script>
+	<script type="text/javascript"
+		src="jsonform-master/opt/bootstrap-dropdown.js"></script>
+	<script type="text/javascript" src="jsonform-master/jsonform.js"></script>
+	<script>
+		person = {}
+		person.timeline = []
+		var runReqs = function(person, pick, eventType) {
+			var meetsReqs = true
+			if("requires" in pick) {
+				console.log("picky!")
+				for(req in pick.requires) {
+					console.log("req " +req)
+					for(type in pick.requires[req]) {
+						console.log("type " +type)
+						if (type =="is") {
+							if(pick.requires[req][type].constructor === Array) {
+								for(idx in pick.requires[req][type]) {
+									if(pick.requires[req][type][idx] != person[req] && person[req] != "[Random]") {
+										console.log("mismatch!" + pick.requires[req] + person[req])
+										meetsReqs = false
+										break
+									}
+									else {
+										console.log("is!"+ pick.requires[req][type][idx] + person[req])
+									}
+								}
+							} else {
+								if(pick.requires[req][type] != person[req] && person[req] != "[Random]") {
+									console.log("mismatch!" + pick.requires[req] + person[req])
+									meetsReqs = false
+									break
+								}
+								else {
+									console.log("is!"+ pick.requires[req][type] + person[req])
+								} 
+							}
+						} else if (type =="not") {
+							if(pick.requires[req][type].constructor === Array) {
+								for(idx in pick.requires[req][type]) {
+									if(pick.requires[req][type][idx] == person[req] && person[req] != "[Random]") {
+										console.log("mismatch!" + pick.requires[req] + person[req])
+										meetsReqs = false
+										break
+									}
+									else {
+										console.log("not!"+ pick.requires[req][type][idx] + person[req])
+									}
+								}
+							} else {
+								if(pick.requires[req][type] == person[req] && person[req] != "[Random]") {
+									console.log("mismatch!" + pick.requires[req] + person[req])
+									meetsReqs = false
+									break
+								}
+								else {
+									console.log("not!"+ pick.requires[req][type] + person[req])
+								} 
+							}
+						} else if (type =="under") {
+							if(pick.requires[req][type] < person[req] && person[req] != "[Random]") {
+								console.log("mismatch!" + pick.requires[req] + person[req])
+								meetsReqs = false
+								break
+							}
+							else {
+								console.log("math!"+ pick.requires[req][type] + person[req])
+							}
+						} else if (type =="above") {
+							if(pick.requires[req][type] < person[req] && person[req] != "[Random]") {
+								console.log("mismatch!" + pick.requires[req] + person[req])
+								meetsReqs = false
+								break
+							}
+							else {
+								console.log("math!"+ pick.requires[req][type] + person[req])
+							}
+						} else {
+							meetsReqs = false
+							break
+						}
+					}
+					if(!meetsReqs) {
+						break
+					}
+				}
+			}
+			if(meetsReqs) {
+				return pick
+			} else {
+				return eventType(person)
+			}
+		}
+		var chEvent = function(person) {
+			var events = [{"event" : "Kind Family", "requires":
+				{"childTone": {"is" :"Positive"}}}, 
+				{"event" : "Mean Family", "requires":
+				{"childTone": {"is" :"Negative"}}}, 
+				{"event" : "Average Family"},
+				{"event" : "Rich Family", "requires":
+				{"social": {"not": ["Poor", "Slave"]}}}, 
+				{"event" : "Trait Family", "requires":
+				{"trait": {"above": 20}}}]
+			var pick = events[Math.floor(Math.random() * events.length)]
+			pick.era = "Child"
+			console.log("pick" + JSON.stringify(pick))
+			return runReqs(person, pick, chEvent)
+		}
+		var adEvent = function(person) {
+			var events = [{"event" : "Fun Adventure", "requires":
+			{"adoleTone": {"is" :"Positive"}}}, 
+			{"event" : "Dangerous Adventure", "requires":
+			{"adoleTone": {"is" :"Negative"}}},
+			{"event" : "Changed Ownership", "requires":
+			{"social": {"is": "Slave"}}}, 
+			{"event" : "No Adventures"},
+			{"event" : "Traveled often", "requires":
+			{"social": {"not": ["Poor"]}}}, 
+			{"event" : "Trait Problem", "requires":
+			{"trait": {"under": 20}}}]
+			var pick = events[Math.floor(Math.random() * events.length)]
+			pick.era = "Adolescent"
+			console.log("pick" + JSON.stringify(pick))
+			return runReqs(person, pick, adEvent)
+		}
+		var yaEvent = function(person) {
+				var events = [{"event" : "Enjoy work", "requires":
+				{"yngAdTone": {"is" :"Positive"}}}, 
+				{"event" : "Hate Work", "requires":
+				{"yngAdTone": {"is" :"Negative"}}}, 
+				{"event" : "Bored"},
+				{"event" : "Struggled to eat", "requires":
+				{"social": {"not": ["Rich", "Noble", "Royal"]}},"yngAdTone": {"is" :"Negative"}},
+				{"event" : "Changed Ownership", "requires":
+				{"social": {"is": "Slave"}}}, 
+				{"event" : "Trait improved", "requires":
+				{"trait": {"under": 20}}, "effect": {"trait": {"inc": 20}}}]
+				var pick = events[Math.floor(Math.random() * events.length)]
+				pick.era = "Young Adult"
+				console.log("pick" + JSON.stringify(pick))
+				return runReqs(person, pick, yaEvent)
+		}
+		var maEvent = function(person) {
+			var events = [{"event" : "Enjoy work", "requires":
+			{"midAdTone": {"is" :"Positive"}}}, 
+			{"event" : "Hate Work", "requires":
+			{"midAdTone": {"is" :"Negative"}}}, 
+			{"event" : "Bored"},
+			{"event" : "Struggled to afford food", "requires":
+			{"social": {"not": ["Rich", "Noble", "Royal"]}}, "midAdTone": {"is" :"Negative"}},
+			{"event" : "Changed Ownership", "requires":
+			{"social": {"is": "Slave"}}}, 
+			{"event" : "Trait improved", "requires":
+			{"trait": {"under": 20}}, "effect": {"trait": {"inc": 20}}}]
+			var pick = events[Math.floor(Math.random() * events.length)]
+			pick.era = "Mid-Adult"
+			console.log("pick" + JSON.stringify(pick))
+			return runReqs(person, pick, maEvent)
+		}
+		var elEvent = function(person) {
+			var events = [{"event" : "Enjoy retirement", "requires":
+			{"elderTone": {"is" :"Positive"}}}, 
+			{"event" : "Still Working", "requires":
+			{"elderTone": {"is" :"Negative"}}}, 
+			{"event" : "Bored"},
+			{"event" : "Struggled to get food", "requires":
+			{"social": {"not": ["Rich", "Noble", "Royal"]}}, "elderTone": {"is" :"Negative"}},
+			{"event" : "Set free", "requires":
+			{"social": {"is": "Slave"}}, "effect": {"social": {"change": "Poor"}}}, 
+			{"event" : "Trait improved", "requires":
+			{"trait": {"under": 20}}, "effect": {"trait": {"inc": 20}}}]
+			var pick = events[Math.floor(Math.random() * events.length)]
+			pick.era = "Elder"
+			console.log("pick" + JSON.stringify(pick))
+			return runReqs(person, pick, elEvent)
+		}
+	    var addEvents = function(person) {
+	    	if(person.region == "[Random]") 
+				person.region = [   "The Reach",
+									"The Westerlands", "The North",
+									"The Riverlands", "The Vale",
+									"The Stormlands", "The Crownlands",
+									"The Iron Islands",
+									"North of the Wall", "Dorne" ][Math.floor(Math.random() * 10)]
+	    	if(person.social == "[Random]") 
+				person.social = [  "Slave", "Poor", "Commoner",
+									"Rich", "Noble", "Royal"][Math.floor(Math.random() * 6)]
+			console.log(person)
+			person.timeline.push(chEvent(person))
+			if(person.age != "Child")
+				person.timeline.push(adEvent(person))
+			else return
+			if(person.age != "Adolescent")
+				person.timeline.push(yaEvent(person))
+				
+			else return
+			if(person.job == "[Random]") 
+				person.job = [ "Blacksmith", "Farmer",
+								"Fisherman", "Guard",
+								"Knight", "Merchant", "Lord"][Math.floor(Math.random() * 8)]
+			if(person.age != "Young Adult")
+				person.timeline.push(maEvent(person))
+			else return
+			if(person.age != "Middle-age Adult")
+				person.timeline.push(elEvent(person))
+			else return
+		}
+		var formObj = function() {
+			$("form > div").remove()
+			$('form').jsonForm(
+					{
+						"schema" : {
+							"firstName" : {
+								"title" : "First Name",
+								"type" : "string",
+								"default" : "[Random]",
+
+							},
+							"lastName" : {
+								"title" : "Last Name",
+								"type" : "string",
+								"default" : "[Random]",
+							},
+							"social" : {
+								"title" : "Social Class",
+								"type" : "string",
+								"enum" : [ "[Random]", "Slave",
+											"Poor", "Commoner",
+											"Rich", "Noble", "Royal"]
+							},
+							"region" : {
+								"title" : "Region",
+								"type" : "string",
+								"enum" : [ "[Random]", "The Reach",
+										"The Westerlands", "The North",
+										"The Riverlands", "The Vale",
+										"The Stormlands", "The Crownlands",
+										"The Iron Islands",
+										"North of the Wall", "Dorne" ]
+							},
+							"job" : {
+								"title" : "Job",
+								"type" : "string",
+								"enum" : [ "[Random]", "Blacksmith", "Farmer",
+										"Fisherman", "Guard", "Knight",
+										"Merchant", "Lord" ]
+							},
+							"age" : {
+								"title" : "Age Category",
+								"type" : "string",
+								"enum" : [ "[Random]", "Child", "Adolescent",
+										"Young Adult", "Middle-age Adult",
+										"Elder" ]
+							},
+							"trait" : {
+								"title" : "Trait",
+								"minimum" : 0,
+								"type" : "range",
+								"maximum" : 100
+							},
+							"childTone" : {
+								"title" : "Childhood",
+								"type" : "string",
+								"enum" : [ "[Random]", "Positive",
+											"Negative"]
+							},
+							"adoleTone" : {
+								"title" : "Adolescence",
+								"type" : "string",
+								"enum" : [ "[Random]", "Positive",
+											"Negative"]
+							},
+							"yngAdTone" : {
+								"title" : "Young Adulthood",
+								"type" : "string",
+								"enum" : [ "[Random]", "Positive",
+											"Negative"]
+							},
+							"midAdTone" : {
+								"title" : "Mid-Life",
+								"type" : "string",
+								"enum" : [ "[Random]", "Positive",
+											"Negative"]
+							},
+							"elderTone" : {
+								"title" : "Elder Years",
+								"type" : "string",
+								"enum" : [ "[Random]", "Positive",
+											"Negative"]
+							},
+
+						},
+						"value" : {
+							"firstName" : person.firstName,
+							"lastName" : person.lastName,
+							"job": person.job,
+							"region":person.region,
+							"age": person.age,
+							"childTone" : person.childTone,
+							"adoleTone": person.adoleTone,
+							"yngAdTone" : person.yngAdTone,
+							"midAdTone": person.midAdTone,
+							"elderTone":person.elderTone
+							
+						},
+						"form" : [
+								{
+									"type" : "fieldset",
+									"title" : "Basics",
+									"expandable" : true,
+									"items" : [ "firstName", "lastName", "age",
+											"job", "region", "social" ]
+								},
+								{
+									"type" : "fieldset",
+									"title" : "Traits",
+									"expandable" : true,
+									"items" : [ {
+										"key" : "trait",
+										"description" : "50",
+										"onChange" : function(evt) {
+											var value = $(evt.target).val();
+											person.age = value
+											$(evt.target.nextSibling).html(
+													value.toString())
+										}
+									} ]
+								},
+								{
+									"type" : "fieldset",
+									"title" : "Eras",
+									"expandable" : true,
+									"items" : [ "childTone", "adoleTone", "yngAdTone",
+											"midAdTone", "elderTone" ]
+								},
+								{
+									"type" : "actions",
+									"items" : [ {
+										"type" : "submit",
+										"title" : "Save"
+									} ]
+								} ],
+
+						"onSubmit" : function(errors, values) {
+							if (errors) {
+								$('#res').html('<p>I beg your pardon?</p>');
+								console.log(errors)
+							} else {
+								person = values
+								console.log(person.age)
+								if(person.age == "[Random]") 
+									person.age = [ "Child", "Adolescent",
+													"Young Adult", "Middle-age Adult",
+													"Elder" ][Math.floor(Math.random() * 5)]
+								console.log(person)
+								person.timeline = []
+								addEvents(person)
+								eventStr = cleanPrintEvents(person)
+								$('#res').html(
+										'<p>Hello ' + person.firstName + " "
+												+ person.lastName 
+												+ ", "+person.age + " "+person.social+" "+
+												((["Young Adult", "Middle-age Adult",
+													"Elder" ].indexOf(person.age) > -1)? person.job + " ":" person")
+													+ " from " + person.region
+													+ "<br> Timeline: " +eventStr +'</p>'
+													
+													+ "<br>Infrom code below:<br>" + printInform(person));
+							}
+						},
+						"onBeforeRender" : function(data, node) {
+							// Set the template to be rendered for this node.
+							data.myVal = "Hey, thanks for reading!";
+						}
+					})
+		}
+		var printInform = function(person) {
+			inform = 
+			'Include Conversation Rules by Eric Eve.<br>'+
+			'Instead of asking someone about something:<br>'+
+			'follow the unknown quizzing rule of the noun.<br>'+
+			'Instead of telling someone about something:<br>'+
+			'follow the unknown informing rule of the noun.<br>'+
+			'Clothing is a kind of thing. Clothing is wearable.<br>'+
+			'<br>ComplexNPC0 is a person.<br>' +
+			'The printed name of ComplexNPC0 is "' + person.firstName + " " + person.lastName + '".<br>'+
+			'Understand "'+person.firstName  +" "+person.lastName +'" and "' + person.firstName +'" as ComplexNPC0. <br>'+
+			'The description is ' +formDescription(person)+ "<br>"+
+			'The quizzing table is the Table of ComplexNPC0 Answers.<br>'+
+			'The informing table is the Table of ComplexNPC0 Remarks.<br>'+
+			'The unknown quizzing rule is the ComplexNPC0 default-quiz-response rule. <br>'+
+			'The unknown informing rule is the ComplexNPC0 default-inform-response rule. <br>'+
+			'This is the ComplexNPC0 default-quiz-response rule: <br>'+
+			'show the next response from the Table of ComplexNPC0 Default Quiz Responses. <br>'+
+			'This is the ComplexNPC0 default-inform-response rule: <br>'+
+			'show the next response from the Table of ComplexNPC0 Default Inform Responses. <br>' +
+			'<br>Table of ComplexNPC0 Answers <br>' +
+			'subject	&Tab;response rule	&Tab;response table	&Tab;suggest <br>' +
+			'ComplexNPC0	&Tab;ComplexNPC0 ask-self rule	&Tab;--	&Tab;1<br>' +
+			'home&Tab;--&Tab;Table of ComplexNPC0 home&Tab;9<br>' +
+			'job&Tab;--&Tab;Table of ComplexNPC0 job&Tab;9<br>'+
+			'class&Tab;--&Tab;Table of ComplexNPC0 class&Tab;9<br>'+
+			 formSubjectRef(person) +"<br>"+
+			'<br>Table of ComplexNPC0 Remarks<br>' +
+			'subject&Tab;response rule&Tab;response&Tab;table&Tab;suggest<br>' +
+			'ComplexNPC0&Tab;ComplexNPC0 tell-self rule&Tab;--&Tab;-1<br><br>'+
+
+			'Table of ComplexNPC0 Default Quiz Responses<br>'+
+			'response<br>'+
+			'"The traveller looks annoyed by your question, for some reason, and declines to answer."<br><br>'+
+
+			'Table of ComplexNPC0 Default Inform Responses<br>'+
+			'response<br>'+
+			'"Sounds Interesting"<br><br>'+
+			formSubjectTable(person) +"<br>"+
+			'This is the ComplexNPC0 ask-self rule:<br>'+
+			'say "I am feeling well today, thanks for asking."<br>'+
+			'This is the ComplexNPC0 tell-self rule:<br>'+
+			'say "I know about myself already."<br>'+
+			'After saying hello to ComplexNPC0:<br>'+
+			'say "Greetings";<br>'+
+			'if the greeting type is explicit, follow the standard list suggested topics rule.<br>'+
+			'After saying goodbye to ComplexNPC0 when the farewell type is explicit:<br>'+
+			'say "Farewell"<br>'+
+			
+			'<br>Table of Table Types (continued)<br>'+
+			'tabname&Tab;index&Tab;tabtype<br>'+
+			'Table of ComplexNPC0 Default Quiz Responses&Tab;0&Tab;stop-list<br>'+
+			'Table of ComplexNPC0 Default Inform Responses&Tab;0&Tab;stop-list<br>'+
+			formSubjectTableTypes(person)+ "<br>"
+			return inform
+		}
+		var cleanPrintEvents= function(person) {
+			var str = "<br>"
+			console.log(person)
+			for (item in person.timeline) {
+				console.log(person.timeline[item])
+				str += person.timeline[item]["era"] +": "+person.timeline[item]["event"] + "<br>"
+			}
+			return str
+		}
+		var formDescription = function(person) {
+			return '"This person is something.".'
+		}
+		var formSubjectRef = function(person) {
+			return 'childhood&Tab;--&Tab;Table of ComplexNPC0 childhood&Tab;9<br>'+
+			'adolescence&Tab;--&Tab;Table of ComplexNPC0 adolescence&Tab;9<br>'+
+			'young adulthood&Tab;--&Tab;Table of ComplexNPC0 young adulthood&Tab;9<br>'+
+			'mid-life&Tab;--&Tab;Table of ComplexNPC0 mid-life&Tab;9<br>'+
+			'elder years&Tab;--&Tab;Table of ComplexNPC0 elder years&Tab;9<br>'
+		}
+		var formSubjectTable = function(person) {
+			var child = [],
+			adole = [],
+			yngAd = [],
+			midAd = [],
+			elder = []
+			for (event in person.timeline) {
+				console.log(event)
+				if(person.timeline[event]["era"] == "Child") {
+					child.push(person.timeline[event])
+				} else if (person.timeline[event]["era"] == "Adolescent") {
+					adole.push(person.timeline[event])
+				} else if (person.timeline[event]["era"] == "Young Adult") {
+					yngAd.push(person.timeline[event])
+				} else if (person.timeline[event]["era"] == "Mid-Adult") {
+					midAd.push(person.timeline[event])
+				} else if (person.timeline[event]["era"] == "Elder") {
+					elder.push(person.timeline[event])
+				}
+			}
+			var str = '<br>class is a familiar subject.<br>'+ 
+			'<br>Table of ComplexNPC0 class<br>'+
+			'response<br>'+
+			'"I was born in '+ (4320 -Math.floor(Math.random()
+					*(["Child", "Adolescent","Young Adult", "Middle-age Adult","Elder"].indexOf(
+							person.age)+1)*15))
+							+' to a '+ person.social +' family."<br>'+
+			
+			'<br>job is a familiar subject.<br>'+ 
+			'<br>Table of ComplexNPC0 job<br>'+
+			'response<br>'+
+			'"I am a ' + person.job+'."<br>' +
+			'<br>home is a familiar subject.<br>'+ 
+			'<br>Table of ComplexNPC0 home<br>'+
+			'response<br>'+
+			'"I am from '+ person.region+ '"<br>'+
+			'<br>childhood is a familiar subject.<br>'+ 
+			'<br>Table of ComplexNPC0 childhood<br>'+
+			'response<br>'
+			for (event in child) {
+			 	str+='"As an child I '+ child[event]["event"]+'."<br>'
+			}
+			 str+='<br>adolescence is a familiar subject.<br>'+ 
+			'<br>Table of ComplexNPC0 adolescence<br>'+
+			'response<br>'
+			for (event in adole) {
+			 	str+='"As an adolescent I '+ adole[event]["event"]+'."<br>'
+			}
+			str+='<br>young adulthood is a familiar subject.<br>'+
+			'<br>Table of ComplexNPC0 young adulthood<br>'+
+			'response<br>'
+			for (event in yngAd) {
+			 	str+='"As an young adult I '+ yngAd[event]["event"]+'."<br>'
+			}
+			str+='<br>mid-life is a familiar subject.<br>'+
+			'<br>Table of ComplexNPC0 mid-life<br>'+
+			'response<br>'
+			for (event in midAd) {
+			 	str+='"As an adult I '+ midAd[event]["event"]+'."<br>'
+			}
+			str+='<br>elder years is a familiar subject.<br>'+ 
+			'<br>Table of ComplexNPC0 elder years<br>'+
+			'response<br>'
+			for (event in elder) {
+			 	str+='"As an elder I '+ elder[event]["event"]+'."<br>'
+			}
+			
+			return str
+		}
+		var formSubjectTableTypes = function(person){
+			var str = " "
+			start = "Table of ComplexNPC0 "
+			str += start + "job"+"&Tab;0&Tab; stop-list<br>"+
+			start + "class"+"&Tab;0&Tab; stop-list<br>"+
+			start + "home"+"&Tab;0&Tab;stop-list<br>"+
+			start + "childhood"+"&Tab;0&Tab;stop-list<br>"+
+			start + "adolescence"+"&Tab;0&Tab;stop-list<br>"+
+			start + "young adulthood"+"&Tab;0&Tab;stop-list<br>"+
+			start + "mid-life"+"&Tab;0&Tab;stop-list<br>"+
+			start + "elder years"+"&Tab;0&Tab;stop-list<br>"
+			return str
+		}
+		formObj()
+		var filename = ""
+		//Load a JSON document
+		FileReaderJS.setupInput(document.getElementById('loadDocument'), {
+			readAsDefault : 'Text',
+			on : {
+				load : function(event, file) {
+					json =event.target.result
+					person = JSON && JSON.parse(json) || $.parseJSON(json);event.target.result
+					formObj()
+				}
+			}
+		});
+		// Save a JSON document
+		document.getElementById('saveDocument').onclick = function() {
+			var json = JSON.stringify(person)
+			console.log(person)
+			var blob = new Blob([ json ], {
+				type : 'application/json;charset=utf-8'
+			});
+			if (filename) {
+				saveAs(blob, filename);
+			} else {
+				saveAs(blob, 'document.json');
+			}
+		};
+	</script>
+</body>
+</html>
