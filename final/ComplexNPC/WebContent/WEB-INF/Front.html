@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>ComplexNPC Web editor</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+<!-- json editor -->
+<link rel="stylesheet" type="text/css" href="jsoneditor/jsoneditor.css">
+<script type="text/javascript" src="jsoneditor/jsoneditor.js"></script>
+
+<!-- ace editor -->
+<script type="text/javascript" src="ace/src-min-noconflict/ace.js"></script>
+
+<!-- json lint -->
+<script type="text/javascript" src="jsonlint/jsonlint.js"></script>
+
+<!-- fileIO -->
+<script src="http://bgrins.github.io/filereader.js/filereader.js"></script>
+<script src="http://eligrey.com/demos/FileSaver.js/FileSaver.js"></script>
+<style type="text/css">
+body {
+	font: 10.5pt arial;
+	color: #4d4d4d;
+	line-height: 150%;
+	width: 500px;
+}
+
+code {
+	background-color: #f5f5f5;
+}
+
+#jsoneditor {
+	width: 500px;
+	height: 500px;
+}
+</style>
+</head>
+<body>
+
+	<p>Switch editor mode using the mode box.</p>
+
+	<p>
+		Load a JSON document: <input type="file" id="loadDocument"
+			value="Load" />
+	</p>
+	<p>
+		Save a JSON document: <input type="button" id="saveDocument"
+			value="Save" />
+	</p>
+
+	<div id="jsoneditor"></div>
+
+	<script type="text/javascript">
+		var filename = ""
+		//Load a JSON document
+		FileReaderJS.setupInput(document.getElementById('loadDocument'), {
+			readAsDefault : 'Text',
+			on : {
+				load : function(event, file) {
+					editor.setText(event.target.result);
+					filename = file.name
+					console.log(filename)
+				}
+			}
+		});
+		// Save a JSON document
+		document.getElementById('saveDocument').onclick = function() {
+			var blob = new Blob([ editor.getText() ], {
+				type : 'application/json;charset=utf-8'
+			});
+			if(filename) {
+				saveAs(blob, filename);
+			}else {
+				saveAs(blob, 'document.json');
+			}
+			};
+
+		var container = document.getElementById('jsoneditor');
+		var options = {
+			mode : 'tree',
+			modes : [ 'code', 'form', 'text', 'tree', 'view' ], // allowed modes
+			error : function(err) {
+				alert(err.toString());
+			}
+		};
+		var json = {
+			"nothing" : "much"
+		}
+		var editor = new JSONEditor(container, options, json);
+	</script>
+</body>
+</html>

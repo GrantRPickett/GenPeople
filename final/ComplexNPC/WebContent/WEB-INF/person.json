@@ -1,0 +1,299 @@
+{
+    "answers": {
+        "home": 0,
+        "livelihood": 0,
+        "childhood": 0
+    },
+    "class": {
+    	"selected" : "{pick() class}",
+    	"selectedFrom" : "selection class"
+    },
+    "default-ask": {
+        "lines": [
+            {
+                "text": "The traveller looks annoyed by your question, for some reason, and declines to answer.",
+                "topics": {}
+            }
+        ]
+    },
+    "default-tell": {
+        "lines": [
+            {
+                "text": "Sounds Interesting",
+                "topics": {}
+            }
+        ]
+    },
+    "description": "default",
+    "effects": {},
+    "events": {},
+    "exclusions": {},
+    "farewell": "Goodbye",
+    "greeting": "Hello",
+    "home": true,
+    "lord": true,
+    "mental": {
+        "kind": {
+            "current": 0.5
+        },
+        "focused": {
+            "current": 0.5
+        },
+        "ambitious": {
+            "current": 0.5
+        },
+        "active": {
+            "current": 0.5
+        },
+        "drunkard": {
+            "current": 0.5
+        },
+        "glutton": {
+            "current": 0.5
+        },
+        "chaste": {
+            "current": 0.5
+        },
+        "religious": {
+            "current": 0.5
+        },
+        "optimistic": {
+            "current": 0.5
+        },
+        "forgiving": {
+            "current": 0.5
+        },
+        "rational": {
+            "current": 0.5
+        },
+        "self-control": {
+            "current": 0.5
+        },
+        "frugal": {
+            "current": 0.5
+        },
+        "charitable": {
+            "current": 0.5
+        },
+        "clean": {
+            "current": 0.5
+        },
+        "organized": {
+            "current": 0.5
+        },
+        "friendly": {
+            "current": 0.5
+        },
+        "trusting": {
+            "current": 0.5
+        },
+        "smart": {
+            "current": 0.5
+        },
+        "atypical": {
+        	"selected" : "{pick() class}",
+    	"selectedFrom" : "selection class" },
+        "protective": {
+            "current": 0.5
+        },
+        "happy": {
+            "current": 0.5
+        },
+        "social": {
+            "current": 0.5
+        },
+        "trendy": {
+            "current": 0.5
+        },
+        "creative": {
+            "current": 0.5
+        },
+        "traditional": {
+            "current": 0.5
+        },
+        "energetic": {
+            "current": 0.5
+        },
+        "loud": {
+            "current": 0.5
+        },
+        "outdoorsy": {
+            "current": 0.5
+        },
+        "honorable": {
+            "current": 0.5
+        },
+        "diplomatic": {
+            "current": 0.5
+        },
+        "warm": {
+            "current": 0.5
+        },
+        "wise": {
+            "current": 0.5
+        },
+        "punctual": {
+            "current": 0.5
+        },
+        "openness": {
+            "current": 0.5
+        },
+        "conscientiousness": {
+            "current": 0.5
+        },
+        "extraversion": {
+            "current": 0.5
+        },
+        "agreeableness": {
+            "current": 0.5
+        },
+        "neuroticism": {
+            "current": 0.5
+        }
+    },
+    "name": true,
+    "physical": {
+        "height": {
+            "amount": 1
+        },
+        "weight": {
+            "amount": 1
+        },
+        "strength": {
+            "amount": 1
+        },
+        "beard": {
+            "amount": 1
+        },
+        "mustache": {
+            "amount": 1
+        },
+        "bodyHair": {
+            "amount": 1
+        },
+        "hairLength": {
+            "amount": 1
+        },
+        "hairColor": true,
+        "sick": {
+            "amount": 1
+        },
+        "wounds": {
+            "amount": 0
+        },
+        "beauty": {
+            "amount": 1
+        },
+        "agiliy": {
+            "amount": 1
+        },
+        "tan": {
+            "amount": 1
+        },
+        "maimed": false
+    },
+    "profession": false,
+    "selections": {
+        "class": [
+            {
+                "selection": "commoner",
+                "effects": {
+                    "childhood": {
+                        "apprentice": 0
+                    }
+                },
+                "selectWeight": 0.889
+            },
+            {
+                "selection": "noble",
+                "effects": {
+                    "childhood": {
+                        "knight": 0
+                    }
+                },
+                "selectWeight": 0.1
+            }
+        ],
+        "job": [
+            {
+                "selection": "fisherman",
+                "selectWeight": 1
+            },
+            {
+                "selection": "blacksmith",
+                "selectWeight": 1
+            }
+        ],
+        "maimed": [
+            {
+                "selection": "leg"
+            },
+            {
+                "selection": "arm"
+            }
+        ],
+        "hair color": [
+            {
+                "selection": "red"
+            },
+            {
+                "selection": "blonde"
+            },
+            {
+                "selection": "black"
+            },
+            {
+                "selection": "brown"
+            }
+        ]
+    },
+    "subjects": {
+        "home": {
+            "familiar": true,
+            "lines": [
+                {
+                    "text": "I am from {get() home selection}",
+                    "node": "",
+                    "topics": {
+                        "home": 3
+                    }
+                },
+                {
+                    "text": "My family serves {get() lord selection}",
+                    "node": "",
+                    "topics": {}
+                }
+            ],
+            "list type": "stop-list"
+        },
+        "livelihood": {
+            "familiar": true,
+            "lines": [
+                {
+                    "text": "I am a {get() job selection}.",
+                    "node": "",
+                    "topics": {}
+                },
+                {
+                    "text": "I am a {get() class selection}.",
+                    "node": "",
+                    "topics": {}
+                }
+            ],
+            "list type": "stop-list"
+        },
+        "childhood": {
+            "familiar": true,
+            "lines": [
+                {
+                    "text": "I was born in {rand() 4332 4390} to a {get() class selection} family.",
+                    "node": "",
+                    "topics": {
+                        "childhood": 3
+                    }
+                }
+            ],
+            "list type": "stop-list"
+        }
+    }
+}

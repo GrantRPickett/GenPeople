@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>ComplexNPC Web editor</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+<!-- fileIO -->
+<script src="http://bgrins.github.io/filereader.js/filereader.js"
+	type="text/javascript"></script>
+<script src="http://eligrey.com/demos/FileSaver.js/FileSaver.js"
+	type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" media="all"
+	href="jsonform-master/opt/bootstrap.css">
+<script type="text/javascript"
+	src="jsonform-master/jquery.min.js"></script>
+</head>
+<body>
+	<p>Welcome to NPC Agency. A program designed to provide minor
+		characters for video games. Currently used with the Inform engine.
+		(http://inform7.com/download/) To create a completely random character
+		just push the blue button. If you would like to adjusts some aspects
+		of the character, expand the accordions below and make some changes
+		before submitting the form. There are buttons below to download the
+		Inform extension (to be installed by the user). A JSON serialization
+		of the character can be loaded into this form for modification and
+		changes saved. The basic information is the most straight forward and
+		has details about where the person was born, how old he is, etc. The
+		traits affect which events a person might experience and their
+		description. The Eras section lets you influence the events in each
+		era to be more positive or negative.
+		</p>
+		<a href="http://users.csc.calpoly.edu/~gpickett/NPCAgency/"> Example Game of Thrones village with 50 generated NPCs</a>
+	<p>
+		Load a JSON person file: <input type="file" id="loadDocument"
+			value="Load" />
+	</p>
+	<form id="form" action=""></form>
+	<div>
+		<p>
+			Save a Inform extension person file: <input type="button"
+				id="saveInform" value="Download" />
+		</p>
+	</div>
+	<div id="res"></div>
+	<div id="inform"></div>
+
+	<p>
+		Save a JSON person file: <input type="button" id="saveDocument"
+			value="Download" />
+	</p>
+	<script type="text/javascript" src="GoTdatabase.js"></script>
+	<script type="text/javascript" src="jsonform-master/underscore.js"></script>
+	<script type="text/javascript" src="jsonform-master/opt/jsv.js"></script>
+	<script type="text/javascript"
+		src="jsonform-master/opt/bootstrap-dropdown.js"></script>
+	<script type="text/javascript" src="jsonform-master/jsonform.js"></script>
+	<script type="text/javascript" src="PersonForm.js"></script>
+	<script src="http://bgrins.github.io/filereader.js/filereader.js"
+    type="text/javascript"></script>
+<script src="http://eligrey.com/demos/FileSaver.js/FileSaver.js"
+    type="text/javascript"></script>
+<script type="text/javascript"
+    src="jsonform-master/jquery.min.js"></script>
+</body>
+</html>
